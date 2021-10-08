@@ -74,7 +74,9 @@ function App()
   }
   const handleLogout = () =>
   {
-    fire.auth().signout();
+    fire
+      .auth()
+      .signout();
   }
 
   const authListener = () =>
@@ -100,7 +102,7 @@ function App()
     <div className="App">
       <Login
       email={email}
-      setEmail={setEmailError}
+      setEmail={setEmail}
         password={password}
         setpassword={setPassword}
        handleLogin ={handleLogin }

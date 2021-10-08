@@ -12,7 +12,7 @@ const Login = (props) =>
                     aurofocus
                     required
                     value={email}
-                    onChange={(e) => setEmail(e.targer.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
                 <p className="errorMsg"> {emailError}</p>
                 <label>Password</label>
@@ -23,6 +23,21 @@ const Login = (props) =>
                     onChange = {(e) =>setpassword(e.target.value)}
                 />
                 <p className="errorMsg"> {passwordError}</p>
+                <div className="btncontainer">
+                    {hasAccount   ?  (
+                        <>
+                            <button onClick={handleLogin}>Sign in</button>
+                            <p>Don't have a account ?  <span onClick = {()=>setHasAccount (!hasAccount)}>sign up</span></p>
+                        </>
+                    ):
+                        (
+                            <>
+                            <button onClick = {handleSignup}>Sign up</button>
+                            <p>Have an account ? <span onClick = {() =>setHasAccount (!hasAccount)}>Sign in</span></p>
+                        </>
+                        )
+                    }
+                </div>
             </div>
     </section>
     );
