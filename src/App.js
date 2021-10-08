@@ -1,6 +1,9 @@
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 import { useEffect, useState } from 'react';
 import './App.css';
-import fire from './fire';
+import fire from './Fire';
+import Login from './Login';
 
 function App()
 {
@@ -23,13 +26,14 @@ function App()
 }
   const handleLogin = () =>
   {
+
     clearErrors();
     fire
       .auth()
       .signInWithEmailAndPassword(email, password)
       .catch(err =>
       {
-        switch (error.code)
+        switch (err.code)
         {
           case "auth/invalid-email":
           case "auth/user-disabled":
@@ -37,7 +41,7 @@ function App()
             setEmailError(err.message);
             break;
           case "auth/wrong-password":
-            setPasswordError(error.message);
+            setPasswordError(err.message);
             break;
           
         }
@@ -53,7 +57,7 @@ function App()
       .createUserWithEmailAndPassword(email, password)
       .catch(err =>
       {
-        switch (error.code)
+        switch (err.code)
         {
           case "auth/email-already-in-use":
           case "auth/invalid-email":
@@ -61,7 +65,7 @@ function App()
             setEmailError(err.message);
             break;
           case "auth/weak-password":
-            setPasswordError(error.message);
+            setPasswordError(err.message);
             break;
           
         }
@@ -94,7 +98,21 @@ function App()
   },[])
   return (
     <div className="App">
-    
+      <Login
+      email={email}
+      setEmail={setEmailError}
+        password={password}
+        setpassword={setPassword}
+       handleLogin ={handleLogin }
+     handleSignup ={handleSignup }
+     hasAccount ={hasAccount }
+      setHasAccount={ setHasAccount}
+     emailError ={emailError }
+      passwordError={passwordError }
+      
+      
+
+      ></Login>
     </div>
   );
 }

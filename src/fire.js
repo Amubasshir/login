@@ -1,7 +1,9 @@
-import firebase from 'firebase';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 
-const firebaseConfig = {
+var firebaseConfig = {
     apiKey: "AIzaSyCpwZlvv6eoelS7H6xBSON-n0Pl6pSqBsk",
     authDomain: "login-fd341.firebaseapp.com",
     projectId: "login-fd341",
